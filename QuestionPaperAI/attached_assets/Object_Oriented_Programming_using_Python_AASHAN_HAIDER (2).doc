@@ -1,0 +1,453 @@
+
+<!DOCTYPE html>
+<html xmlns:o='urn:schemas-microsoft-com:office:office' 
+      xmlns:w='urn:schemas-microsoft-com:office:word'
+      xmlns:m='http://schemas.microsoft.com/office/2004/12/omml'
+      xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset="utf-8">
+<meta name="ProgId" content="Word.Document">
+<meta name="Generator" content="Microsoft Word 15">
+<meta name="Originator" content="Microsoft Word 15">
+<title>Object_Oriented_Programming_using_Python_AASHAN_HAIDER</title>
+<!--[if gte mso 9]>
+<xml>
+  <w:WordDocument>
+    <w:View>Print</w:View>
+    <w:Zoom>100</w:Zoom>
+    <w:DoNotOptimizeForBrowser/>
+    <w:DoNotUseLongFileNames/>
+    <w:DefaultTabStop>36pt</w:DefaultTabStop>
+    <w:CharacterSpacingControl>DoNotCompress</w:CharacterSpacingControl>
+  </w:WordDocument>
+  <o:OfficeDocumentSettings>
+    <o:AllowPNG/>
+    <o:PixelsPerInch>96</o:PixelsPerInch>
+  </o:OfficeDocumentSettings>
+</xml>
+<![endif]-->
+<!--[if gte mso 9]>
+<xml>
+  <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="false"
+   DefSemiHidden="false" DefQFormat="false" LatentStyleCount="156">
+  </w:LatentStyles>
+</xml>
+<![endif]-->
+<style>
+  /* Define page size as LEGAL (8.5" x 14") */
+  @page {
+    size: 8.5in 14in;
+    margin: 1in;
+    mso-page-orientation: portrait;
+  }
+  @page WordSection1 {
+    size: 8.5in 14in;
+    margin: 1in;
+    mso-header-margin: .5in;
+    mso-footer-margin: .5in;
+    mso-paper-source: 0;
+    mso-page-orientation: portrait;
+  }
+  div.WordSection1 {
+    page: WordSection1;
+  }
+  body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 14pt;
+    line-height: 1.5;
+    margin: 1in;
+  }
+  h1, h2, h3, h4 {
+    font-family: Arial, sans-serif;
+    mso-style-priority: 10;
+    margin-top: 12pt;
+    margin-bottom: 3pt;
+  }
+  h1 { font-size: 20pt; font-weight: bold; }
+  h2 { font-size: 18pt; font-weight: bold; }
+  h3 { font-size: 16pt; font-weight: bold; }
+  h4 { font-size: 14pt; font-weight: bold; }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 16pt;
+    mso-table-lspace: 0pt;
+    mso-table-rspace: 0pt;
+  }
+  table, th, td {
+    border: 1pt solid black;
+    padding: 8pt;
+    mso-border-alt: solid black .75pt;
+    font-size: 14pt;
+  }
+  th {
+    font-weight: bold;
+    background-color: #f0f0f0;
+    mso-shading: white;
+  }
+  
+  .bubble {
+    display: inline-block;
+    width: 20pt;
+    height: 20pt;
+    border: 1.5pt solid black;
+    border-radius: 50%;
+    margin-right: 8pt;
+    text-align: center;
+    mso-element: frame;
+    mso-element-wrap: around;
+    mso-height-rule: exactly;
+  }
+  .question {
+    margin-bottom: 20pt;
+    font-size: 14pt;
+  }
+  .options {
+    font-size: 14pt;
+  }
+  .page-break {
+    page-break-before: always;
+    mso-break-type: section-break;
+  }
+  /* Ensure proper line wrapping */
+  p, div, table { word-wrap: break-word; mso-word-wrap: break-word; }
+  
+  /* Format headers properly */
+  .header-table {
+    border: none;
+    width: 100%;
+    margin-bottom: 30pt;
+  }
+  .header-table td {
+    border: none;
+    padding: 6pt;
+    vertical-align: top;
+    font-size: 14pt;
+  }
+  .header-row {
+    font-weight: bold;
+    font-size: 14pt;
+  }
+  .header-value {
+    font-weight: normal;
+    font-size: 14pt;
+  }
+  
+  /* Better option formatting */
+  .option-row {
+    display: flex;
+    margin-bottom: 8pt;
+    font-size: 14pt;
+  }
+  .option-label {
+    margin-right: 10pt;
+    font-weight: bold;
+    font-size: 14pt;
+  }
+  
+  /* Mobile display overrides - won't affect Word */
+  @media screen {
+    body { margin: 20px; }
+  }
+</style>
+</head>
+<body>
+  <div class="WordSection1">
+    
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <title>Question Paper</title>
+        <style>
+          @page { size: legal; margin: 1in; }
+          body {
+            font-family: "Times New Roman", Times, serif;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0.5in;
+          }
+          .header {
+            text-align: center;
+            margin-bottom: 20px;
+          }
+          .header h1 {
+            font-size: 18px;
+            margin: 0;
+          }
+          .header h2 {
+            font-size: 16px;
+            margin: 0;
+          }
+          .paper-info {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            font-size: 12px;
+          }
+          .paper-info div {
+            width: 48%;
+          }
+          .student-info {
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+            padding: 5px 0;
+            margin: 10px 0;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+          }
+          .section {
+            margin: 15px 0;
+          }
+          .section-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+          }
+          .question {
+            margin-bottom: 15px;
+          }
+          .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 5px;
+          }
+          .option {
+            font-size: 12px;
+          }
+          .bubble-row {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+            padding-top: 5px;
+            border-top: 1px solid #ddd;
+          }
+          .bubble {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border: 1px solid black;
+            border-radius: 50%;
+            margin: 0 5px;
+            text-align: center;
+          }
+          .signature-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+          }
+          pre, code {
+            font-family: monospace;
+            background-color: #f5f5f5;
+            border-radius: 3px;
+          }
+          pre {
+            padding: 10px;
+            white-space: pre-wrap;
+          }
+          code {
+            padding: 2px 4px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <h1>The Islamia University of Bahawalpur</h1>
+          <h2>Department of Data Science</h2>
+        </div>
+        
+        <div class="paper-info">
+          <div>
+            <p><strong>Program/Semester:</strong> BS Data Science</p>
+            <p><strong>Subject:</strong> Object Oriented Programming using Python</p>
+            <p><strong>Instructor:</strong> Dr. Akmal Khan</p>
+          </div>
+          <div style="text-align: right;">
+            <p><strong>Maximum Marks:</strong> 100</p>
+            <p><strong>Time:</strong> 60 minutes</p>
+            <p><strong>Date:</strong> 04/12/2025</p>
+          </div>
+        </div>
+        
+        <div style="text-align: center; font-weight: bold; margin: 10px 0;">
+          <p>Paper Type: Midterm</p>
+        </div>
+        
+        <div class="student-info">
+          <div><strong>Name:</strong> AASHAN HAIDER</div>
+          <div style="text-align: right;"><strong>Roll No:</strong> F24BDATS1E01004</div>
+        </div>
+        
+        <div class="questions">
+          
+                <div class="section">
+                  <div class="section-title">Section: Main Topic</div>
+                  
+                    <div class="question">
+                      <div><strong>Q1.</strong> Which of the following statements is true regarding inheritance in Python?
+                        <span style="font-size: 0.9em; color: #555;">(25 marks)</span>
+                      </div>
+                      <div class="options">
+                        
+                          <div class="option">
+                            <strong>A.</strong> Python supports multiple inheritance.
+                          </div>
+                        
+                          <div class="option">
+                            <strong>B.</strong> All Python classes must inherit from <code style="background-color: #f5f5f5; padding: 2px 4px; border-radius: 3px; font-family: monospace;">object</code> explicitly.
+                          </div>
+                        
+                          <div class="option">
+                            <strong>C.</strong> Python only supports single inheritance.
+                          </div>
+                        
+                          <div class="option">
+                            <strong>D.</strong> Inheritance cannot be used to override methods.
+                          </div>
+                        
+                      </div>
+                      <div class="bubble-row">
+                        <strong>Q1:</strong>
+                        <span style="margin-left: 10px;"><strong>A</strong> <span class="bubble"></span></span>
+                        <span style="margin-left: 10px;"><strong>B</strong> <span class="bubble"></span></span>
+                        <span style="margin-left: 10px;"><strong>C</strong> <span class="bubble"></span></span>
+                        <span style="margin-left: 10px;"><strong>D</strong> <span class="bubble"></span></span>
+                      </div>
+                    </div>
+                  
+                    <div class="question">
+                      <div><strong>Q2.</strong> What is the primary purpose of using decorators in Python?
+                        <span style="font-size: 0.9em; color: #555;">(25 marks)</span>
+                      </div>
+                      <div class="options">
+                        
+                          <div class="option">
+                            <strong>A.</strong> To define class attributes.
+                          </div>
+                        
+                          <div class="option">
+                            <strong>B.</strong> To implement recursion in functions.
+                          </div>
+                        
+                          <div class="option">
+                            <strong>C.</strong> To decorate the syntax of functions.
+                          </div>
+                        
+                          <div class="option">
+                            <strong>D.</strong> To modify the functionality of a function or class method.
+                          </div>
+                        
+                      </div>
+                      <div class="bubble-row">
+                        <strong>Q2:</strong>
+                        <span style="margin-left: 10px;"><strong>A</strong> <span class="bubble"></span></span>
+                        <span style="margin-left: 10px;"><strong>B</strong> <span class="bubble"></span></span>
+                        <span style="margin-left: 10px;"><strong>C</strong> <span class="bubble"></span></span>
+                        <span style="margin-left: 10px;"><strong>D</strong> <span class="bubble"></span></span>
+                      </div>
+                    </div>
+                  
+                    <div class="question">
+                      <div><strong>Q3.</strong> How do you define a constructor in a Python class?
+                        <span style="font-size: 0.9em; color: #555;">(25 marks)</span>
+                      </div>
+                      <div class="options">
+                        
+                          <div class="option">
+                            <strong>A.</strong> def construct(self):
+                          </div>
+                        
+                          <div class="option">
+                            <strong>B.</strong> def __init__(self):
+                          </div>
+                        
+                          <div class="option">
+                            <strong>C.</strong> def constructor(self):
+                          </div>
+                        
+                          <div class="option">
+                            <strong>D.</strong> def _construct(self):
+                          </div>
+                        
+                      </div>
+                      <div class="bubble-row">
+                        <strong>Q3:</strong>
+                        <span style="margin-left: 10px;"><strong>A</strong> <span class="bubble"></span></span>
+                        <span style="margin-left: 10px;"><strong>B</strong> <span class="bubble"></span></span>
+                        <span style="margin-left: 10px;"><strong>C</strong> <span class="bubble"></span></span>
+                        <span style="margin-left: 10px;"><strong>D</strong> <span class="bubble"></span></span>
+                      </div>
+                    </div>
+                  
+                    <div class="question">
+                      <div><strong>Q4.</strong> What is the output of the following code?
+
+<pre style="background-color: #f5f5f5; padding: 10px; border-radius: 4px; font-family: monospace; white-space: pre-wrap;">python
+class Example:
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return f'Value is {self.value}'
+
+obj = Example(5)
+print(obj)
+</pre>
+
+                        <span style="font-size: 0.9em; color: #555;">(25 marks)</span>
+                      </div>
+                      <div class="options">
+                        
+                          <div class="option">
+                            <strong>A.</strong> An error is raised.
+                          </div>
+                        
+                          <div class="option">
+                            <strong>B.</strong> <__main__.Example object at memory_location>
+                          </div>
+                        
+                          <div class="option">
+                            <strong>C.</strong> None
+                          </div>
+                        
+                          <div class="option">
+                            <strong>D.</strong> Value is 5
+                          </div>
+                        
+                      </div>
+                      <div class="bubble-row">
+                        <strong>Q4:</strong>
+                        <span style="margin-left: 10px;"><strong>A</strong> <span class="bubble"></span></span>
+                        <span style="margin-left: 10px;"><strong>B</strong> <span class="bubble"></span></span>
+                        <span style="margin-left: 10px;"><strong>C</strong> <span class="bubble"></span></span>
+                        <span style="margin-left: 10px;"><strong>D</strong> <span class="bubble"></span></span>
+                      </div>
+                    </div>
+                  
+                </div>
+              
+        </div>
+        
+        <div class="signature-section">
+          <div style="border: 1px solid #ddd; padding: 5px; border-radius: 4px; width: 160px;">
+            <p style="margin: 0; font-size: 9px;"><strong>Examiner's Signature:</strong></p>
+            <div class="signature-box" style="height: 18px;">&nbsp;</div>
+          </div>
+          <div style="border: 1px solid #ddd; padding: 5px; border-radius: 4px; width: 160px;">
+            <p style="margin: 0; font-size: 9px;"><strong>Student's Signature:</strong></p>
+            <div class="signature-box" style="height: 18px;">&nbsp;</div>
+          </div>
+        </div>
+        
+        <!-- Hidden paper ID for scanning reference -->
+        <div style="text-align: center; margin-top: 10px; font-size: 7px; color: #999;">
+          <p>Paper ID: 50 | Student ID: F24BDATS1E01004 | Generated: 13/04/2025</p>
+        </div>
+      </body>
+      </html>
+    
+  </div>
+</body>
+</html>
+  

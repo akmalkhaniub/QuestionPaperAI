@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Object Oriented Programming using Python - URWA SHOUKAT</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 5px; font-size: 10px; line-height: 1.2; }
+    .header { text-align: center; margin-bottom: 5px; }
+    .header h1 { font-size: 14px; font-weight: bold; margin: 2px 0; }
+    .header h2 { font-size: 12px; font-weight: normal; margin: 2px 0; }
+    .details { display: grid; grid-template-columns: 1fr 1fr; margin: 5px 0; }
+    .details p { margin: 2px 0; font-size: 10px; }
+    .student-info { border-top: 1px solid #000; border-bottom: 1px solid #000; padding: 2px 0; margin: 3px 0; }
+    .question { margin-bottom: 4px; page-break-inside: avoid; }
+    .question-text { font-weight: bold; margin: 0; font-size: 10px; }
+    .options { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 1px; }
+    .option { display: flex; font-size: 9px; margin-bottom: 0; }
+    .signature-section { display: flex; justify-content: space-between; margin-top: 6px; padding-top: 3px; border-top: 1px solid #ddd; }
+    .signature-box { border-bottom: 1px solid #000; width: 120px; height: 16px; margin-top: 2px; }
+    pre { background-color: #f5f5f5; padding: 2px; border-radius: 2px; font-family: monospace; white-space: pre-wrap; overflow-x: auto; font-size: 9px; margin: 1px 0; }
+    code { background-color: #f5f5f5; padding: 1px; border-radius: 2px; font-family: monospace; font-size: 9px; }
+    .bubbles { display: grid; grid-template-columns: auto auto auto auto auto; gap: 2px; margin-top: 1px; font-size: 7px; }
+    .bubble-option { display: flex; align-items: center; }
+    .bubble { width: 7px; height: 7px; border: 1px solid #000; border-radius: 50%; display: inline-block; margin-left: 1px; }
+    .signatures { font-size: 9px; font-weight: normal; }
+    @media print {
+      body { padding: 0; }
+      .options { page-break-inside: avoid; }
+      .question { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>The Islamia University of Bahawalpur</h1>
+    <h2>Department of Data Science</h2>
+  </div>
+  
+  <div class="details">
+    <div>
+      <p><strong>Program/Semester:</strong> BS Data Science</p>
+      <p><strong>Subject:</strong> Object Oriented Programming using Python</p>
+      <p><strong>Instructor:</strong> Dr. Akmal Khan</p>
+    </div>
+    <div>
+      <p><strong>Maximum Marks:</strong> 100</p>
+      <p><strong>Time:</strong> 60 minutes</p>
+      <p><strong>Date:</strong> 2025-12-04T00:00:00.000Z</p>
+    </div>
+  </div>
+  
+  <div>
+    <p><strong>Paper Type:</strong> MCQS (circle the right choice. Cutting and overwriting is not allowed)</p>
+  </div>
+  
+  <div class="student-info">
+    <p>
+      <strong>Name:</strong> URWA SHOUKAT
+      <span style="float: right"><strong>Roll No:</strong> F24BDATS1M02002</span>
+    </p>
+  </div>
+  
+  <div class="questions">
+      <div class="section">
+        <h3>Section 1: Topic</h3>
+        <div class="question">
+          <p><strong>1.</strong> How do you define a constructor in a Python class? <span class="marks">(25 marks)</span></p><div class="options">
+            <div class="option">
+              <span>A. def construct(self):</span>
+            </div>
+            <div class="option">
+              <span>B. def __init__(self):</span>
+            </div>
+            <div class="option">
+              <span>C. def constructor(self):</span>
+            </div>
+            <div class="option">
+              <span>D. def _construct(self):</span>
+            </div></div></div>
+        <div class="question">
+          <p><strong>2.</strong> What is the output of the following code?
+
+```python
+class Example:
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return f'Value is {self.value}'
+
+obj = Example(5)
+print(obj)
+```
+ <span class="marks">(25 marks)</span></p><div class="options">
+            <div class="option">
+              <span>A. Value is 5</span>
+            </div>
+            <div class="option">
+              <span>B. An error is raised.</span>
+            </div>
+            <div class="option">
+              <span>C. <__main__.Example object at memory_location></span>
+            </div>
+            <div class="option">
+              <span>D. None</span>
+            </div></div></div>
+        <div class="question">
+          <p><strong>3.</strong> What is the primary purpose of using decorators in Python? <span class="marks">(25 marks)</span></p><div class="options">
+            <div class="option">
+              <span>A. To implement recursion in functions.</span>
+            </div>
+            <div class="option">
+              <span>B. To define class attributes.</span>
+            </div>
+            <div class="option">
+              <span>C. To decorate the syntax of functions.</span>
+            </div>
+            <div class="option">
+              <span>D. To modify the functionality of a function or class method.</span>
+            </div></div></div>
+        <div class="question">
+          <p><strong>4.</strong> Which of the following statements is true regarding inheritance in Python? <span class="marks">(25 marks)</span></p><div class="options">
+            <div class="option">
+              <span>A. Python only supports single inheritance.</span>
+            </div>
+            <div class="option">
+              <span>B. Inheritance cannot be used to override methods.</span>
+            </div>
+            <div class="option">
+              <span>C. All Python classes must inherit from `object` explicitly.</span>
+            </div>
+            <div class="option">
+              <span>D. Python supports multiple inheritance.</span>
+            </div></div></div></div>
+        <div class="signature-section">
+          <div style="border: 1px solid #ddd; padding: 5px; border-radius: 4px; width: 160px;">
+            <p style="margin: 0; font-size: 9px;"><strong>Examiner's Signature:</strong></p>
+            <div class="signature-box" style="height: 18px;">&nbsp;</div>
+          </div>
+          <div style="border: 1px solid #ddd; padding: 5px; border-radius: 4px; width: 160px;">
+            <p style="margin: 0; font-size: 9px;"><strong>Student's Signature:</strong></p>
+            <div class="signature-box" style="height: 18px;">&nbsp;</div>
+          </div>
+        </div>
+        
+        <!-- Hidden paper ID for scanning reference -->
+        <div style="text-align: center; margin-top: 10px; font-size: 7px; color: #999;">
+          <p>Paper ID: - | Student ID: F24BDATS1M02002 | Generated: 12/04/2025</p>
+        </div>
+    </div>
+  </div>
+</body>
+</html>

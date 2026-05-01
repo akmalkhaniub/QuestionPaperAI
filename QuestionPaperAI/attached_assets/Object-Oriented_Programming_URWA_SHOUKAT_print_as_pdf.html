@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Object-Oriented_Programming_URWA_SHOUKAT</title>
+  <style>
+    /* Define page size as LEGAL (8.5" x 14") with margins */
+    @page {
+      size: legal;
+      margin: 0.5in;
+    }
+    
+    /* Base document styling */
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 14pt;
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Header styling */
+    .text-center {
+      text-align: center;
+    }
+    h1, h2, h3 {
+      margin: 0.2in 0 0.1in 0;
+    }
+    h1 {
+      font-size: 18pt;
+    }
+    h2 {
+      font-size: 16pt;
+    }
+    
+    /* Grid layout */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.2in;
+      margin: 0.1in 0;
+    }
+    
+    /* Student info box */
+    .border-t {
+      border-top: 1pt solid #000;
+    }
+    .border-b {
+      border-bottom: 1pt solid #000;
+    }
+    .py-1 {
+      padding-top: 0.1in;
+      padding-bottom: 0.1in;
+    }
+    
+    /* Options layout - two per row */
+    .options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.1in;
+      margin-left: 0.2in;
+    }
+    .option {
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    /* Question styling */
+    .font-medium {
+      font-weight: 600;
+    }
+    .my-1 {
+      margin-top: 0.1in;
+      margin-bottom: 0.1in;
+    }
+    .mb-3 {
+      margin-bottom: 0.3in;
+    }
+    
+    /* Space utilities */
+    .space-y-3 > *:not(:first-child) {
+      margin-top: 0.3in;
+    }
+    
+    /* Print-specific behavior */
+    @media print {
+      body {
+        padding: 0;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+  <script>
+    // Auto-print when document loads
+    window.onload = function() {
+      document.title = "Object-Oriented_Programming_URWA_SHOUKAT";
+      // Print instructions message
+      const printInstructions = document.createElement('div');
+      printInstructions.style.padding = '20px';
+      printInstructions.style.background = '#f0f0f0';
+      printInstructions.style.borderRadius = '5px';
+      printInstructions.style.margin = '20px';
+      printInstructions.style.fontFamily = 'Arial, sans-serif';
+      printInstructions.innerHTML = '<h2>Print Instructions</h2>' +
+        '<p>To save this document as a PDF:</p>' +
+        '<ol>' +
+        '<li>Press Ctrl+P (or Cmd+P on Mac)</li>' +
+        '<li>Select "Save as PDF" in the printer options</li>' +
+        '<li>Click Save</li>' +
+        '</ol>' +
+        '<p><strong>Note:</strong> This message will not appear in the printed document.</p>' +
+        '<p><button onclick="window.print()" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Print Now</button></p>';
+      
+      // Insert at the beginning of the body
+      document.body.insertBefore(printInstructions, document.body.firstChild);
+    }
+    
+    // Define the print CSS to hide the instructions
+    const style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = '@media print { #printInstructions { display: none; } }';
+    document.head.appendChild(style);
+  </script>
+</head>
+<body>
+  <!-- Content for printing will appear here -->
+  <div id="printContent">
+    
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Object-Oriented_Programming_URWA_SHOUKAT</title>
+      <style>
+        /* Define page size as LEGAL (8.5" x 14") with margins */
+        @page {
+          size: legal;
+          margin: 0.5in;
+        }
+        
+        /* Base document styling */
+        body {
+          font-family: Arial, sans-serif;
+          font-size: 14pt;
+          line-height: 1.5;
+          margin: 0;
+          padding: 0;
+        }
+        
+        /* Header styling */
+        .text-center {
+          text-align: center;
+        }
+        h1, h2, h3 {
+          margin: 0.2in 0 0.1in 0;
+        }
+        h1 {
+          font-size: 18pt;
+        }
+        h2 {
+          font-size: 16pt;
+        }
+        
+        /* Grid layout */
+        .grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.2in;
+          margin: 0.1in 0;
+        }
+        
+        /* Student info box */
+        .border-t {
+          border-top: 1pt solid #000;
+        }
+        .border-b {
+          border-bottom: 1pt solid #000;
+        }
+        .py-1 {
+          padding-top: 0.1in;
+          padding-bottom: 0.1in;
+        }
+        
+        /* Options layout - two per row */
+        .options {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.1in;
+          margin-left: 0.2in;
+        }
+        .option {
+          display: flex;
+          align-items: flex-start;
+        }
+        
+        /* Question styling */
+        .font-medium {
+          font-weight: 600;
+        }
+        .my-1 {
+          margin-top: 0.1in;
+          margin-bottom: 0.1in;
+        }
+        .mb-3 {
+          margin-bottom: 0.3in;
+        }
+        
+        /* Bubble styling */
+        .answer-bubbles {
+          display: flex;
+          align-items: center;
+          gap: 0.3in;
+          border-top: 1pt solid #ddd;
+          padding-top: 0.1in;
+          margin-top: 0.1in;
+        }
+        .bubble-container {
+          display: flex;
+          align-items: center;
+        }
+        .bubble {
+          width: 0.2in;
+          height: 0.2in;
+          border: 1.5pt solid #000;
+          border-radius: 50%;
+          margin-left: 0.1in;
+        }
+        
+        /* Signature section */
+        .signature-section {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 0.5in;
+        }
+        .signature-box {
+          border: 1pt solid #000;
+          padding: 0.1in;
+          width: 2in;
+        }
+        .signature-line {
+          border-bottom: 1pt solid #000;
+          height: 0.5in;
+        }
+        
+        /* Space utilities */
+        .space-y-3 > *:not(:first-child) {
+          margin-top: 0.3in;
+        }
+      </style>
+    </head>
+    <body>
+      <div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:779:10" data-component-name="div" class="text-center mb-3"><h1 data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:780:12" data-component-name="h1" class="text-lg font-bold mb-0.5">The Islamia University of Bahawalpur</h1><h2 data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:781:12" data-component-name="h2" class="text-base mt-0">Department of Data Science</h2><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:783:12" data-component-name="div" class="grid grid-cols-2 gap-2 mt-2 text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:784:14" data-component-name="div" class="text-left"><p data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:785:16" data-component-name="p" class="my-0.5"><strong data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:785:38" data-component-name="strong">Program/Semester:</strong> BS Data Science</p><p data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:786:16" data-component-name="p" class="my-0.5"><strong data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:786:38" data-component-name="strong">Subject:</strong> Object-Oriented Programming</p><p data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:787:16" data-component-name="p" class="my-0.5"><strong data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:787:38" data-component-name="strong">Instructor:</strong> Dr. Akmal Khan</p></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:789:14" data-component-name="div" class="text-right"><p data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:790:16" data-component-name="p" class="my-0.5"><strong data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:790:38" data-component-name="strong">Maximum Marks:</strong> 100</p><p data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:791:16" data-component-name="p" class="my-0.5"><strong data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:791:38" data-component-name="strong">Time:</strong> 60 minutes</p><p data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:798:16" data-component-name="p" class="my-0.5"><strong data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:798:38" data-component-name="strong">Date:</strong> Invalid Date</p></div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:804:12" data-component-name="div" class="mt-2 border-t border-b py-1"><p data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:805:14" data-component-name="p" class="text-left"><strong data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:806:16" data-component-name="strong">Name:</strong> URWA SHOUKAT<strong data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:807:16" data-component-name="strong" style="margin-left: 30px;">Class:</strong> _______________<span data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:808:16" data-component-name="span" class="float-right"><strong data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:808:46" data-component-name="strong">Roll No:</strong> F24BDATS1M02002</span></p></div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:814:10" data-component-name="div" class="questions-section space-y-3"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:835:12" data-component-name="div" class="section mb-4"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:839:14" data-component-name="div" class="question mb-3"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:840:20" data-component-name="div" class="font-medium my-1 text-sm">I. Which of the following is a feature of Python's object-oriented programming?<span data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:842:41" data-component-name="span" class="text-xs ml-1 text-gray-500">(10 marks)</span></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:845:20" data-component-name="div" class="options grid grid-cols-2 gap-1 mt-1"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">A.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Pointers</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">B.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Multiple inheritance</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">C.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Macros</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">D.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Namespaces</div></div></div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:839:14" data-component-name="div" class="question mb-3"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:840:20" data-component-name="div" class="font-medium my-1 text-sm">II. Which of the following is NOT a valid way to create a new class in Python?<span data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:842:41" data-component-name="span" class="text-xs ml-1 text-gray-500">(10 marks)</span></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:845:20" data-component-name="div" class="options grid grid-cols-2 gap-1 mt-1"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">A.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">class MyClass(object): pass</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">B.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">myClass = type('MyClass', (), {})</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">C.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">class MyClass: pass</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">D.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">MyClass = new class()</div></div></div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:839:14" data-component-name="div" class="question mb-3"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:840:20" data-component-name="div" class="font-medium my-1 text-sm">III. Which of the following statements about Python's encapsulation is true?<span data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:842:41" data-component-name="span" class="text-xs ml-1 text-gray-500">(10 marks)</span></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:845:20" data-component-name="div" class="options grid grid-cols-2 gap-1 mt-1"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">A.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Python does not support encapsulation at all.</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">B.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Encapsulation in Python is achieved only through public methods.</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">C.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Python uses underscore prefixes to indicate private attributes.</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">D.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Python enforces strict access controls at the syntax level.</div></div></div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:839:14" data-component-name="div" class="question mb-3"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:840:20" data-component-name="div" class="font-medium my-1 text-sm">IV. Which keyword is used to inherit a class in Python?<span data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:842:41" data-component-name="span" class="text-xs ml-1 text-gray-500">(10 marks)</span></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:845:20" data-component-name="div" class="options grid grid-cols-2 gap-1 mt-1"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">A.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">class</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">B.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">extends</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">C.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">inherits</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">D.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">super</div></div></div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:839:14" data-component-name="div" class="question mb-3"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:840:20" data-component-name="div" class="font-medium my-1 text-sm">V. What concept is demonstrated by the ability of different classes to implement the same method called 'display_info'?<span data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:842:41" data-component-name="span" class="text-xs ml-1 text-gray-500">(10 marks)</span></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:845:20" data-component-name="div" class="options grid grid-cols-2 gap-1 mt-1"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">A.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Encapsulation</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">B.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Polymorphism</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">C.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Overloading</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">D.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Inheritance</div></div></div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:839:14" data-component-name="div" class="question mb-3"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:840:20" data-component-name="div" class="font-medium my-1 text-sm">VI. Which of the following correctly shows the method resolution order (MRO) in Python?<span data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:842:41" data-component-name="span" class="text-xs ml-1 text-gray-500">(10 marks)</span></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:845:20" data-component-name="div" class="options grid grid-cols-2 gap-1 mt-1"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">A.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">C3 linearization</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">B.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Depth-first search</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">C.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Breadth-first search</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">D.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Last-visit rule</div></div></div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:839:14" data-component-name="div" class="question mb-3"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:840:20" data-component-name="div" class="font-medium my-1 text-sm">VII. What is the result of the following Python code snippet?
+
+class Sample:
+    def __init__(self, x):
+        self.x = x
+
+obj = Sample(10)
+obj.x = 20
+print(obj.x)<span data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:842:41" data-component-name="span" class="text-xs ml-1 text-gray-500">(10 marks)</span></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:845:20" data-component-name="div" class="options grid grid-cols-2 gap-1 mt-1"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">A.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Error</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">B.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">10</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">C.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">20</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">D.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">None</div></div></div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:839:14" data-component-name="div" class="question mb-3"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:840:20" data-component-name="div" class="font-medium my-1 text-sm">VIII. What is the purpose of the __init__ method in a Python class?<span data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:842:41" data-component-name="span" class="text-xs ml-1 text-gray-500">(10 marks)</span></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:845:20" data-component-name="div" class="options grid grid-cols-2 gap-1 mt-1"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">A.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">To initialize an object's attributes</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">B.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">To print object details</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">C.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">To inherit properties from another class</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">D.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">To destroy an object</div></div></div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:839:14" data-component-name="div" class="question mb-3"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:840:20" data-component-name="div" class="font-medium my-1 text-sm">IX. Which concept refers to using a shared interface method that can be implemented in various ways in different classes?<span data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:842:41" data-component-name="span" class="text-xs ml-1 text-gray-500">(10 marks)</span></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:845:20" data-component-name="div" class="options grid grid-cols-2 gap-1 mt-1"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">A.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Polymorphism</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">B.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Encapsulation</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">C.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Inheritance</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">D.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">Abstraction</div></div></div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:839:14" data-component-name="div" class="question mb-3"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:840:20" data-component-name="div" class="font-medium my-1 text-sm">X. What is the purpose of the '__init__' method in Python classes?<span data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:842:41" data-component-name="span" class="text-xs ml-1 text-gray-500">(10 marks)</span></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:845:20" data-component-name="div" class="options grid grid-cols-2 gap-1 mt-1"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">A.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">It is used to delete an object.</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">B.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">It initializes the object’s properties when a new object is instantiated.</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">C.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">It is used to execute a block of code repeatedly.</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:847:18" data-component-name="div" class="option flex items-start text-xs"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:848:26" data-component-name="div" class="mr-1 font-medium">D.</div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:849:26" data-component-name="div">It serves as a destructor for the class.</div></div></div></div></div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:860:10" data-component-name="div" class="mt-4 pt-2 border-t flex justify-between"><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:861:12" data-component-name="div" class="border border-gray-200 p-2 rounded-md w-40"><p data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:862:14" data-component-name="p" class="text-xs font-semibold text-gray-700 mb-1">Examiner's Signature:</p><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:863:14" data-component-name="div" class="border-b border-gray-800 w-32 h-6">&nbsp;</div></div><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:865:12" data-component-name="div" class="border border-gray-200 p-2 rounded-md w-40"><p data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:866:14" data-component-name="p" class="text-xs font-semibold text-gray-700 mb-1">Student's Signature:</p><div data-replit-metadata="client/src/components/paper-wizard/MCQPaperPreview.tsx:867:14" data-component-name="div" class="border-b border-gray-800 w-32 h-6">&nbsp;</div></div></div>
+    </body>
+    </html>
+    
+  </div>
+</body>
+</html>
+    

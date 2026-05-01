@@ -1,0 +1,441 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Object-Oriented_Programming_SARIM_HAYAT</title>
+  <style>
+    /* Define page size as LEGAL (8.5" x 14") with margins */
+    @page {
+      size: legal;
+      margin: 0.5in;
+    }
+    
+    /* Base document styling */
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 14pt;
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Header styling */
+    .text-center {
+      text-align: center;
+    }
+    h1, h2, h3 {
+      margin: 0.2in 0 0.1in 0;
+    }
+    h1 {
+      font-size: 18pt;
+    }
+    h2 {
+      font-size: 16pt;
+    }
+    
+    /* Grid layout */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.2in;
+      margin: 0.1in 0;
+    }
+    
+    /* Student info box */
+    .border-t {
+      border-top: 1pt solid #000;
+    }
+    .border-b {
+      border-bottom: 1pt solid #000;
+    }
+    .py-1 {
+      padding-top: 0.1in;
+      padding-bottom: 0.1in;
+    }
+    
+    /* Options layout - two per row */
+    .options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.1in;
+      margin-left: 0.2in;
+    }
+    .option {
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    /* Question styling */
+    .font-medium {
+      font-weight: 600;
+    }
+    .my-1 {
+      margin-top: 0.1in;
+      margin-bottom: 0.1in;
+    }
+    .mb-3 {
+      margin-bottom: 0.3in;
+    }
+    
+    /* Space utilities */
+    .space-y-3 > *:not(:first-child) {
+      margin-top: 0.3in;
+    }
+    
+    /* Print-specific behavior */
+    @media print {
+      body {
+        padding: 0;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Object-Oriented Programming - SARIM HAYAT</title>
+  <style>
+    @page { size: legal; margin: 0.25in; }
+    body { font-family: Arial, sans-serif; margin: 0; padding: 5px; font-size: 10px; line-height: 1.2; }
+    .header { text-align: center; margin-bottom: 5px; }
+    .header h1 { font-size: 14px; font-weight: bold; margin: 2px 0; }
+    .header h2 { font-size: 12px; font-weight: normal; margin: 2px 0; }
+    .details { display: grid; grid-template-columns: 1fr 1fr; margin: 5px 0; }
+    .details p { margin: 2px 0; font-size: 10px; }
+    .student-info { border-top: 1px solid #000; border-bottom: 1px solid #000; padding: 2px 0; margin: 3px 0; }
+    .question { margin-bottom: 4px; page-break-inside: avoid; }
+    .question-text { font-weight: bold; margin: 0; font-size: 10px; }
+    .options { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 1px; }
+    .option { display: flex; font-size: 9px; margin-bottom: 0; }
+    .signature-section { display: flex; justify-content: space-between; margin-top: 6px; padding-top: 3px; border-top: 1px solid #ddd; }
+    .signature-box { border-bottom: 1px solid #000; width: 120px; height: 16px; margin-top: 2px; }
+    pre { background-color: #f5f5f5; padding: 2px; border-radius: 2px; font-family: monospace; white-space: pre-wrap; overflow-x: auto; font-size: 9px; margin: 1px 0; }
+    code { background-color: #f5f5f5; padding: 1px; border-radius: 2px; font-family: monospace; font-size: 9px; }
+    .bubbles { display: flex; align-items: center; margin-top: 4px; padding-top: 2px; border-top: 1px dotted #ddd; font-size: 9px; }
+    .bubble-option { display: flex; align-items: center; margin-right: 8px; }
+    .bubble { width: 10px; height: 10px; border: 1.5px solid #000; border-radius: 50%; display: inline-block; margin-left: 2px; }
+    .signatures { font-size: 9px; font-weight: normal; }
+    @media print {
+      body { padding: 0; }
+      .options { page-break-inside: avoid; }
+      .question { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>The Islamia University of Bahawalpur</h1>
+    <h2>Department of Data Science</h2>
+  </div>
+  
+  <div class="details">
+    <div>
+      <p><strong>Program/Semester:</strong> BS Data Science</p>
+      <p><strong>Subject:</strong> Object-Oriented Programming</p>
+      <p><strong>Instructor:</strong> Dr. Akmal Khan</p>
+    </div>
+    <div>
+      <p><strong>Maximum Marks:</strong> 100</p>
+      <p><strong>Time:</strong> 60 minutes</p>
+      <p><strong>Date:</strong> 04/12/2025</p>
+    </div>
+  </div>
+  
+  <div>
+    <p><strong>Paper Type:</strong> MCQS (circle the right choice. Cutting and overwriting is not allowed)</p>
+  </div>
+  
+  <div class="student-info">
+    <p>
+      <strong>Name:</strong> SARIM HAYAT
+      <span style="float: right"><strong>Roll No:</strong> F24BDATS1E01002</span>
+    </p>
+  </div>
+  
+  <div class="questions">
+    
+  <div class="section">
+    <h3>Section 1: Main Topic</h3>
+    <div class="question">
+      <p class="question-text"><strong>1.</strong> How can you prevent a method from being overridden in a subclass in Python? <span class="marks">(10 marks)</span></p><div class="options">
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">A.</span>
+          <span>Using the super() method</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">B.</span>
+          <span>Using the staticmethod decorator</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">C.</span>
+          <span>Using the @final decorator from the typing module</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">D.</span>
+          <span>Using the abstractmethod decorator</span>
+        </div></div>
+            <div class="bubbles">
+              <span>Q1:</span>
+              <div class="bubble-option"><span>A</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>B</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>C</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>D</span><span class="bubble"></span></div>
+            </div></div>
+    <div class="question">
+      <p class="question-text"><strong>2.</strong> Which of the following is a feature of Python that supports Object-Oriented Programming? <span class="marks">(10 marks)</span></p><div class="options">
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">A.</span>
+          <span>Encapsulation</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">B.</span>
+          <span>Dynamic typing</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">C.</span>
+          <span>Interpretability</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">D.</span>
+          <span>Functional programming</span>
+        </div></div>
+            <div class="bubbles">
+              <span>Q2:</span>
+              <div class="bubble-option"><span>A</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>B</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>C</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>D</span><span class="bubble"></span></div>
+            </div></div>
+    <div class="question">
+      <p class="question-text"><strong>3.</strong> In Python, what does the super() function do inside a method definition? <span class="marks">(10 marks)</span></p><div class="options">
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">A.</span>
+          <span>Returns a temporary object of the superclass</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">B.</span>
+          <span>Initializes variables</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">C.</span>
+          <span>Imports all modules</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">D.</span>
+          <span>Directly accesses the parent class variable</span>
+        </div></div>
+            <div class="bubbles">
+              <span>Q3:</span>
+              <div class="bubble-option"><span>A</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>B</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>C</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>D</span><span class="bubble"></span></div>
+            </div></div>
+    <div class="question">
+      <p class="question-text"><strong>4.</strong> Which of the following is a feature of Python's object-oriented programming? <span class="marks">(10 marks)</span></p><div class="options">
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">A.</span>
+          <span>Namespaces</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">B.</span>
+          <span>Macros</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">C.</span>
+          <span>Pointers</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">D.</span>
+          <span>Multiple inheritance</span>
+        </div></div>
+            <div class="bubbles">
+              <span>Q4:</span>
+              <div class="bubble-option"><span>A</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>B</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>C</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>D</span><span class="bubble"></span></div>
+            </div></div>
+    <div class="question">
+      <p class="question-text"><strong>5.</strong> What is the output of the following code?
+class A:
+   def __call__(self):
+       return 'Called!'
+a = A()
+print(a()) <span class="marks">(10 marks)</span></p><div class="options">
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">A.</span>
+          <span>Error</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">B.</span>
+          <span>Called!</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">C.</span>
+          <span>None</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">D.</span>
+          <span>A: Called!</span>
+        </div></div>
+            <div class="bubbles">
+              <span>Q5:</span>
+              <div class="bubble-option"><span>A</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>B</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>C</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>D</span><span class="bubble"></span></div>
+            </div></div>
+    <div class="question">
+      <p class="question-text"><strong>6.</strong> Which term describes the memory allocation of an instance of a class? <span class="marks">(10 marks)</span></p><div class="options">
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">A.</span>
+          <span>Instantiation</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">B.</span>
+          <span>Compilation</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">C.</span>
+          <span>Interpretation</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">D.</span>
+          <span>Execution</span>
+        </div></div>
+            <div class="bubbles">
+              <span>Q6:</span>
+              <div class="bubble-option"><span>A</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>B</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>C</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>D</span><span class="bubble"></span></div>
+            </div></div>
+    <div class="question">
+      <p class="question-text"><strong>7.</strong> In the context of classes, what does the term 'staticmethod' imply? <span class="marks">(10 marks)</span></p><div class="options">
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">A.</span>
+          <span>The method belongs to the class, not any particular object instance.</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">B.</span>
+          <span>The method cannot return a value.</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">C.</span>
+          <span>The method cannot be used outside the class.</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">D.</span>
+          <span>The method can only operate on instance variables.</span>
+        </div></div>
+            <div class="bubbles">
+              <span>Q7:</span>
+              <div class="bubble-option"><span>A</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>B</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>C</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>D</span><span class="bubble"></span></div>
+            </div></div>
+    <div class="question">
+      <p class="question-text"><strong>8.</strong> What type of inheritance is demonstrated in Python by describing a class being derived from multiple base classes? <span class="marks">(10 marks)</span></p><div class="options">
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">A.</span>
+          <span>Hierarchical inheritance</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">B.</span>
+          <span>Multiple inheritance</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">C.</span>
+          <span>Multi-level inheritance</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">D.</span>
+          <span>Direct inheritance</span>
+        </div></div>
+            <div class="bubbles">
+              <span>Q8:</span>
+              <div class="bubble-option"><span>A</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>B</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>C</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>D</span><span class="bubble"></span></div>
+            </div></div>
+    <div class="question">
+      <p class="question-text"><strong>9.</strong> Which of the following correctly identifies Python's approach to data encapsulation? <span class="marks">(10 marks)</span></p><div class="options">
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">A.</span>
+          <span>Python strictly enforces data encapsulation.</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">B.</span>
+          <span>Python uses keywords like private and public.</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">C.</span>
+          <span>Python provides private, protected, and public access specifiers.</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">D.</span>
+          <span>Python uses a convention of prefixing names with underscores for encapsulation.</span>
+        </div></div>
+            <div class="bubbles">
+              <span>Q9:</span>
+              <div class="bubble-option"><span>A</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>B</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>C</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>D</span><span class="bubble"></span></div>
+            </div></div>
+    <div class="question">
+      <p class="question-text"><strong>10.</strong> Which of the following is NOT a valid way to create a new class in Python? <span class="marks">(10 marks)</span></p><div class="options">
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">A.</span>
+          <span>class MyClass(object): pass</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">B.</span>
+          <span>MyClass = new class()</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">C.</span>
+          <span>class MyClass: pass</span>
+        </div>
+        <div class="option">
+          <span style="margin-right: 4px; font-weight: 500;">D.</span>
+          <span>myClass = type('MyClass', (), {})</span>
+        </div></div>
+            <div class="bubbles">
+              <span>Q10:</span>
+              <div class="bubble-option"><span>A</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>B</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>C</span><span class="bubble"></span></div>
+              <div class="bubble-option"><span>D</span><span class="bubble"></span></div>
+            </div></div></div>
+  </div>
+  
+  <div class="signature-section">
+    <div style="border: 1px solid #ddd; padding: 5px; border-radius: 4px; width: 160px;">
+      <p style="margin: 0; font-size: 9px;"><strong>Examiner's Signature:</strong></p>
+      <div class="signature-box" style="height: 18px;">&nbsp;</div>
+    </div>
+    <div style="border: 1px solid #ddd; padding: 5px; border-radius: 4px; width: 160px;">
+      <p style="margin: 0; font-size: 9px;"><strong>Student's Signature:</strong></p>
+      <div class="signature-box" style="height: 18px;">&nbsp;</div>
+    </div>
+  </div>
+  
+  <!-- Hidden paper ID for scanning reference -->
+  <div style="text-align: center; margin-top: 10px; font-size: 7px; color: #999;">
+    <p>Paper ID: - | Student ID: F24BDATS1E01002 | Generated: 13/04/2025</p>
+  </div>
+</body>
+</html>
+</body>
+</html>
+    

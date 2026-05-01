@@ -1,0 +1,27 @@
+# Ignore environment files
+.env
+
+# Ignore node modules
+node_modules/
+**/node_modules/
+
+# Ignore logs
+*.log
+
+# Ignore Replit config files
+.replit
+replit.nix
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore build output
+/dist/
+/build/
+
+# Ignore coverage reports
+coverage/
+
+# Ignore Python virtual environments
+scan_service/venv/

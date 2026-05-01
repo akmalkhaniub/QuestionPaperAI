@@ -1,0 +1,558 @@
+import React from 'react';
+import { 
+  Dialog, 
+  DialogContent, 
+  DialogHeader, 
+  DialogTitle, 
+  DialogDescription,
+  DialogFooter
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { Download, FileDown, Printer, FileText } from 'lucide-react';
+import { generateDOCX, generatePDF } from '@/lib/document-utils';
+
+interface Question {
+  questionNumber: number;
+  questionText: string;
+  options: Record<string, string>;
+  correctAnswer?: string;
+}
+
+interface PaperHeader {
+  university?: string;
+  department?: string;
+  program?: string;
+  marks?: string;
+  subject?: string;
+  time?: string;
+  examType?: string;
+  date?: string;
+  paperType?: string;
+  studentName?: string;
+  rollNumber?: string;
+  title?: string;
+  class?: string;
+  timeAllowed?: string | number;
+  totalMarks?: string | number;
+  instructor?: string;
+  teacherName?: string;  // Added teacher name field
+  semester?: string;
+  examDate?: string;     // Added exam date field
+}
+
+interface PaperData {
+  id?: number | string;
+  paperHeader?: PaperHeader;
+  questions?: Question[];
+  sections?: any[];
+}
+
+interface MCQPaperPreviewProps {
+  isOpen: boolean;
+  onClose: () => void;
+  paperData: PaperData;
+}
+
+export function MCQPaperPreview({ isOpen, onClose, paperData }: MCQPaperPreviewProps) {
+  if (!paperData) return null;
+
+  const handlePrint = () => {
+    window.print();
+  };
+
+  // Helper function to get the HTML content for a paper
+  const getPaperHTMLContent = () => {
+    if (!paperData) return '';
+    
+    // Helper function to format code in HTML
+    const formatCodeForHTML = (text: string) => {
+      if (!text) return '';
+      
+      // Format code blocks with ``` markers
+      let formattedText = text;
+      if (text.includes('```')) {
+        formattedText = text.replace(/```([\s\S]*?)```/g, 
+          '<pre style="background-color: #f5f5f5; padding: 10px; border-radius: 4px; font-family: monospace; white-space: pre-wrap;">$1</pre>'
+        );
+      }
+      
+      // Format inline code with ` markers
+      if (formattedText.includes('`')) {
+        formattedText = formattedText.replace(/`([^`]+)`/g, 
+          '<code style="background-color: #f5f5f5; padding: 2px 4px; border-radius: 3px; font-family: monospace;">$1</code>'
+        );
+      }
+      
+      return formattedText;
+    };
+    
+    // Generate HTML content for the paper
+    return `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>${paperData.paperHeader?.subject || 'Question Paper'} - ${paperData.paperHeader?.studentName || 'Student'}</title>
+        <style>
+          @page { size: legal; margin: 0.5in; }
+          body { font-family: Arial, sans-serif; padding: 6px; max-width: 800px; margin: 0 auto; font-size: 10px; line-height: 1.2; }
+          .header { text-align: center; margin-bottom: 4px; }
+          .header h1 { margin: 0; font-size: 13px; line-height: 1.2; }
+          .header h2 { margin: 0; font-size: 11px; line-height: 1.2; }
+          .details { display: grid; grid-template-columns: 1fr 1fr; column-gap: 8px; margin: 3px 0; font-size: 9px; }
+          .details p { margin: 0; line-height: 1.2; }
+          .student-info { border-top: 1px solid #000; border-bottom: 1px solid #000; padding: 2px 0; margin: 3px 0; }
+          .question { margin-bottom: 4px; page-break-inside: avoid; }
+          .question-text { font-weight: bold; margin: 0; font-size: 10px; }
+          .options { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 1px; }
+          .option { display: flex; font-size: 9px; margin-bottom: 0; }
+          .signature-section { display: flex; justify-content: space-between; margin-top: 6px; padding-top: 3px; border-top: 1px solid #ddd; }
+          .signature-box { border-bottom: 1px solid #000; width: 120px; height: 16px; margin-top: 2px; }
+          pre { background-color: #f5f5f5; padding: 2px; border-radius: 2px; font-family: monospace; white-space: pre-wrap; overflow-x: auto; font-size: 9px; margin: 1px 0; }
+          code { background-color: #f5f5f5; padding: 1px; border-radius: 2px; font-family: monospace; font-size: 9px; }
+          .bubbles { display: flex; align-items: center; margin-top: 4px; padding-top: 2px; border-top: 1px dotted #ddd; font-size: 9px; }
+          .bubble-option { display: flex; align-items: center; margin-right: 8px; }
+          .bubble { width: 10px; height: 10px; border: 1.5px solid #000; border-radius: 50%; display: inline-block; margin-left: 2px; }
+          .signatures { font-size: 9px; font-weight: normal; }
+          @media print {
+            body { padding: 0; }
+            .options { page-break-inside: avoid; }
+            .question { page-break-inside: avoid; }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <h1>${paperData.paperHeader?.university || 'The Islamia University of Bahawalpur'}</h1>
+          <h2>${paperData.paperHeader?.department || 'Department of Data Science'}</h2>
+        </div>
+        
+        <div class="details">
+          <div>
+            <p><strong>Program/Semester:</strong> ${paperData.paperHeader?.program || ''}</p>
+            <p><strong>Subject:</strong> ${paperData.paperHeader?.subject || ''}</p>
+            <p><strong>Instructor:</strong> ${paperData.paperHeader?.instructor || paperData.paperHeader?.teacherName || 'Dr. Faculty Member'}</p>
+          </div>
+          <div>
+            <p><strong>Maximum Marks:</strong> ${paperData.paperHeader?.marks || ''}</p>
+            <p><strong>Time:</strong> ${paperData.paperHeader?.time ? 
+              (paperData.paperHeader.time.includes("minutes minutes") ? 
+                paperData.paperHeader.time.replace("minutes minutes", "minutes") : 
+                paperData.paperHeader.time) : 
+              `${paperData.paperHeader?.timeAllowed || '60'} minutes`}</p>
+            <p><strong>Date:</strong> ${paperData.paperHeader?.date || paperData.paperHeader?.examDate || new Date().toLocaleDateString('en-GB')}</p>
+          </div>
+        </div>
+        
+        <div>
+          <p><strong>Paper Type:</strong> ${paperData.paperHeader?.paperType || 'MCQS (circle the right choice. Cutting and overwriting is not allowed)'}</p>
+        </div>
+        
+        <div class="student-info">
+          <p>
+            <strong>Name:</strong> ${paperData.paperHeader?.studentName || '_______________________'}
+            <span style="float: right"><strong>Roll No:</strong> ${paperData.paperHeader?.rollNumber || '______________'}</span>
+          </p>
+        </div>
+        
+        <div class="questions">
+          ${paperData.questions?.map((q: any, i: number) => `
+            <div class="question">
+              <p class="question-text">${toRoman(i + 1)}. ${formatCodeForHTML(q.questionText)}</p>
+              <div class="options">
+                ${Object.entries(q.options).map(([key, value]) => `
+                  <div class="option">
+                    <span style="margin-right: 4px; font-weight: 500;">${key}.</span>
+                    <span>${formatCodeForHTML(value as string)}</span>
+                  </div>
+                `).join('')}
+              </div>
+              <div class="bubbles">
+                <span>Q${i+1}:</span>
+                <div class="bubble-option"><span>A</span><span class="bubble"></span></div>
+                <div class="bubble-option"><span>B</span><span class="bubble"></span></div>
+                <div class="bubble-option"><span>C</span><span class="bubble"></span></div>
+                <div class="bubble-option"><span>D</span><span class="bubble"></span></div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        
+        <div class="signature-section">
+          <div style="border: 1px solid #ddd; padding: 5px; border-radius: 4px; width: 160px;">
+            <p style="margin: 0; font-size: 9px;"><strong>Examiner's Signature:</strong></p>
+            <div class="signature-box" style="height: 18px;">&nbsp;</div>
+          </div>
+          <div style="border: 1px solid #ddd; padding: 5px; border-radius: 4px; width: 160px;">
+            <p style="margin: 0; font-size: 9px;"><strong>Student's Signature:</strong></p>
+            <div class="signature-box" style="height: 18px;">&nbsp;</div>
+          </div>
+        </div>
+        
+        <!-- Hidden paper ID for scanning reference -->
+        <div style="text-align: center; margin-top: 10px; font-size: 7px; color: #999;">
+          <p>Paper ID: ${paperData?.id || '-'} | Student ID: ${paperData.paperHeader?.rollNumber || '-'} | Generated: ${new Date().toLocaleDateString('en-GB')}</p>
+        </div>
+      </body>
+      </html>
+    `;
+  };
+  
+  // Handle download as DOCX
+  const handleDownloadDOCX = () => {
+    if (!paperData) return;
+    
+    // Get the HTML content
+    const htmlContent = getPaperHTMLContent();
+    
+    // Format file name with clean strings
+    const studentName = (paperData.paperHeader?.studentName || 'student').replace(/\s+/g, '_');
+    const subject = (paperData.paperHeader?.subject || 'question_paper').replace(/\s+/g, '_');
+    const fileName = `${subject}_${studentName}`;
+    
+    // Use our utility function to generate and download the DOCX
+    generateDOCX(htmlContent, fileName);
+  };
+  
+  // Handle download as PDF
+  const handleDownloadPDF = () => {
+    if (!paperData) return;
+    
+    // Get the HTML content
+    const htmlContent = getPaperHTMLContent();
+    
+    // Format file name with clean strings
+    const studentName = (paperData.paperHeader?.studentName || 'student').replace(/\s+/g, '_');
+    const subject = (paperData.paperHeader?.subject || 'question_paper').replace(/\s+/g, '_');
+    const fileName = `${subject}_${studentName}`;
+    
+    // Use our utility function to generate and download the PDF
+    generatePDF(htmlContent, fileName);
+  };
+
+  // Helper function to render roman numerals for question numbers
+  const toRoman = (num: number): string => {
+    const romanNumerals = [
+      { value: 10, numeral: 'X' },
+      { value: 9, numeral: 'IX' },
+      { value: 5, numeral: 'V' },
+      { value: 4, numeral: 'IV' },
+      { value: 1, numeral: 'I' }
+    ];
+    
+    let result = '';
+    for (const pair of romanNumerals) {
+      while (num >= pair.value) {
+        result += pair.numeral;
+        num -= pair.value;
+      }
+    }
+    
+    return result;
+  };
+  
+  // Format code blocks for HTML export
+  const formatCodeForHTML = (text: string): string => {
+    if (!text) return '';
+    
+    // Handle code blocks with triple backticks
+    if (text.includes('```')) {
+      return text.replace(/```([\s\S]*?)```/g, (match, codeContent) => {
+        return `<pre>${codeContent.trim()}</pre>`;
+      });
+    }
+    
+    // Handle inline code with backticks
+    if (text.includes('`')) {
+      return text.replace(/`(.*?)`/g, (match, codeContent) => {
+        return `<code>${codeContent}</code>`;
+      });
+    }
+    
+    return text;
+  };
+  
+  // Helper function to format code blocks in text
+  const formatCodeInText = (text: string): React.ReactNode => {
+    if (!text) return '';
+    
+    // Check if the text contains code blocks formatted with ```
+    if (text.includes('```')) {
+      try {
+        // Split by code block markers
+        const segments = text.split(/```(?:[\w]*\n)?/);
+        const result: React.ReactNode[] = [];
+        
+        for (let i = 0; i < segments.length; i++) {
+          if (i % 2 === 0) {
+            // Regular text - still need to handle inline code
+            if (segments[i].includes('`')) {
+              // Process inline code within the regular text segment
+              const inlineSegments = segments[i].split(/`/);
+              for (let j = 0; j < inlineSegments.length; j++) {
+                if (j % 2 === 0) {
+                  if (inlineSegments[j]) {
+                    result.push(<span key={`text-${i}-${j}`}>{inlineSegments[j]}</span>);
+                  }
+                } else {
+                  result.push(
+                    <code key={`inline-${i}-${j}`} className="px-1 py-0.5 bg-gray-100 rounded font-mono text-xs">
+                      {inlineSegments[j]}
+                    </code>
+                  );
+                }
+              }
+            } else if (segments[i]) {
+              // Just regular text
+              result.push(<span key={`text-${i}`}>{segments[i]}</span>);
+            }
+          } else {
+            // Format code block with indentation and spacing preserved
+            const codeLines = segments[i].split('\n');
+            // Trim any empty lines at start and end
+            while (codeLines.length > 0 && !codeLines[0].trim()) {
+              codeLines.shift();
+            }
+            while (codeLines.length > 0 && !codeLines[codeLines.length - 1].trim()) {
+              codeLines.pop();
+            }
+            
+            result.push(
+              <div key={`code-${i}`} className="my-2 bg-gray-100 rounded overflow-x-auto">
+                <pre className="p-2 font-mono text-xs whitespace-pre-wrap">
+                  {codeLines.join('\n')}
+                </pre>
+              </div>
+            );
+          }
+        }
+        
+        return <>{result}</>;
+      } catch (e) {
+        // Fallback in case of error
+        console.error("Error formatting code blocks:", e);
+        return text;
+      }
+    }
+    
+    // Handle inline code with `backticks`
+    if (text.includes('`')) {
+      try {
+        const segments = text.split(/`/);
+        const result: React.ReactNode[] = [];
+        
+        for (let i = 0; i < segments.length; i++) {
+          if (i % 2 === 0) {
+            // Regular text
+            if (segments[i]) {
+              result.push(<span key={`text-${i}`}>{segments[i]}</span>);
+            }
+          } else {
+            // Inline code
+            result.push(
+              <code key={`code-${i}`} className="px-1 py-0.5 bg-gray-100 rounded font-mono text-xs">
+                {segments[i]}
+              </code>
+            );
+          }
+        }
+        
+        return <>{result}</>;
+      } catch (e) {
+        // Fallback in case of error
+        console.error("Error formatting inline code:", e);
+        return text;
+      }
+    }
+    
+    // No code formatting needed
+    return text;
+  };
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>Paper Preview</DialogTitle>
+          <DialogDescription>
+            Preview the generated MCQ paper
+          </DialogDescription>
+        </DialogHeader>
+
+        <div className="paper-preview p-4 border rounded-md">
+          {/* Header Section */}
+          <div className="text-center mb-3">
+            <h1 className="text-lg font-bold mb-0.5">{paperData.paperHeader?.university || 'The Islamia University of Bahawalpur'}</h1>
+            <h2 className="text-base mt-0">{paperData.paperHeader?.department || 'Department of Data Science'}</h2>
+            
+            <div className="grid grid-cols-2 gap-2 mt-2 text-xs">
+              <div className="text-left">
+                <p className="my-0.5"><strong>Program/Semester:</strong> {paperData.paperHeader?.program}</p>
+                <p className="my-0.5"><strong>Subject:</strong> {paperData.paperHeader?.subject}</p>
+                <p className="my-0.5"><strong>Instructor:</strong> {paperData.paperHeader?.instructor || paperData.paperHeader?.teacherName || 'Dr. Faculty Member'}</p>
+              </div>
+              <div className="text-right">
+                <p className="my-0.5"><strong>Maximum Marks:</strong> {paperData.paperHeader?.marks || paperData.paperHeader?.totalMarks || '100'}</p>
+                <p className="my-0.5"><strong>Time:</strong> {
+                  paperData.paperHeader?.time ? 
+                    (paperData.paperHeader.time.includes("minutes minutes") ? 
+                      paperData.paperHeader.time.replace("minutes minutes", "minutes") : 
+                      paperData.paperHeader.time) : 
+                    `${paperData.paperHeader?.timeAllowed || '60'} minutes`
+                }</p>
+                <p className="my-0.5"><strong>Date:</strong> {paperData.paperHeader?.date || paperData.paperHeader?.examDate || new Date().toLocaleDateString('en-GB')}</p>
+              </div>
+            </div>
+            
+            <div className="mt-2 font-bold text-sm">
+              <p>Paper Type: {paperData.paperHeader?.paperType || 'MCQS (circle the right choice. Cutting and overwriting is not allowed)'}</p>
+            </div>
+            
+            <div className="mt-2 border-t border-b py-1">
+              <p className="text-left">
+                <strong>Name:</strong> {paperData.paperHeader?.studentName || '_______________________'}
+                <span className="float-right"><strong>Roll No:</strong> {paperData.paperHeader?.rollNumber || '______________'}</span>
+              </p>
+            </div>
+          </div>
+          
+          {/* Questions Section */}
+          <div className="questions-section space-y-3">
+            {/* Handle paper data with questions array */}
+            {paperData.questions?.map((question: any, index: number) => (
+              <div key={index} className="question mb-3">
+                <div className="font-medium my-1 text-sm">
+                  {toRoman(index + 1)}. {formatCodeInText(question.questionText)}
+                </div>
+                
+                <div className="options grid grid-cols-2 gap-1 mt-1">
+                  {Object.entries(question.options || {}).map(([key, value]) => (
+                    <div key={key} className="option flex items-start text-xs">
+                      <div className="mr-1 font-medium">{key}.</div>
+                      <div>{formatCodeInText(value as string)}</div>
+                    </div>
+                  ))}
+                </div>
+                
+                {/* OCR-friendly answer bubbles */}
+                <div className="flex items-center space-x-4 mt-2 mb-3 text-xs border-t pt-1">
+                  <div className="font-medium">Q{index+1}:</div>
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center">
+                      <span className="mr-2 font-bold">A</span>
+                      <div className="w-4 h-4 rounded-full border-2 border-gray-400 flex items-center justify-center bg-white">
+                        <div className="w-2 h-2 rounded-full bg-transparent"></div>
+                      </div>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="mr-2 font-bold">B</span>
+                      <div className="w-4 h-4 rounded-full border-2 border-gray-400 flex items-center justify-center bg-white">
+                        <div className="w-2 h-2 rounded-full bg-transparent"></div>
+                      </div>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="mr-2 font-bold">C</span>
+                      <div className="w-4 h-4 rounded-full border-2 border-gray-400 flex items-center justify-center bg-white">
+                        <div className="w-2 h-2 rounded-full bg-transparent"></div>
+                      </div>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="mr-2 font-bold">D</span>
+                      <div className="w-4 h-4 rounded-full border-2 border-gray-400 flex items-center justify-center bg-white">
+                        <div className="w-2 h-2 rounded-full bg-transparent"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+            
+            {/* Handle paper data with sections (nested questions) */}
+            {paperData.sections?.map((section: any, sectionIndex: number) => (
+              <div key={sectionIndex} className="section mb-4">
+                {section.title && (
+                  <h3 className="text-sm font-bold mb-2">Section: {section.title}</h3>
+                )}
+                
+                {(section.questions || []).map((question: any, index: number) => (
+                  <div key={index} className="question mb-3">
+                    <div className="font-medium my-1 text-sm">
+                      {toRoman(index + 1)}. {formatCodeInText(question.questionText)} 
+                      {question.marks && <span className="text-xs ml-1 text-gray-500">({question.marks} marks)</span>}
+                    </div>
+                    
+                    <div className="options grid grid-cols-2 gap-1 mt-1">
+                      {Object.entries(question.options || {}).map(([key, value]) => (
+                        <div key={key} className="option flex items-start text-xs">
+                          <div className="mr-1 font-medium">{key}.</div>
+                          <div>{formatCodeInText(value as string)}</div>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    {/* OCR-friendly answer bubbles */}
+                    <div className="flex items-center space-x-4 mt-2 mb-3 text-xs border-t pt-1">
+                      <div className="font-medium">Q{index+1}:</div>
+                      <div className="flex items-center space-x-4">
+                        <div className="flex items-center">
+                          <span className="mr-2 font-bold">A</span>
+                          <div className="w-4 h-4 rounded-full border-2 border-gray-400 flex items-center justify-center bg-white">
+                            <div className="w-2 h-2 rounded-full bg-transparent"></div>
+                          </div>
+                        </div>
+                        <div className="flex items-center">
+                          <span className="mr-2 font-bold">B</span>
+                          <div className="w-4 h-4 rounded-full border-2 border-gray-400 flex items-center justify-center bg-white">
+                            <div className="w-2 h-2 rounded-full bg-transparent"></div>
+                          </div>
+                        </div>
+                        <div className="flex items-center">
+                          <span className="mr-2 font-bold">C</span>
+                          <div className="w-4 h-4 rounded-full border-2 border-gray-400 flex items-center justify-center bg-white">
+                            <div className="w-2 h-2 rounded-full bg-transparent"></div>
+                          </div>
+                        </div>
+                        <div className="flex items-center">
+                          <span className="mr-2 font-bold">D</span>
+                          <div className="w-4 h-4 rounded-full border-2 border-gray-400 flex items-center justify-center bg-white">
+                            <div className="w-2 h-2 rounded-full bg-transparent"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+          
+          {/* Signature Section */}
+          <div className="mt-4 pt-2 border-t flex justify-between">
+            <div className="border border-gray-200 p-2 rounded-md w-40">
+              <p className="text-xs font-semibold text-gray-700 mb-1">Examiner's Signature:</p>
+              <div className="border-b border-gray-800 w-32 h-6">&nbsp;</div>
+            </div>
+            <div className="border border-gray-200 p-2 rounded-md w-40">
+              <p className="text-xs font-semibold text-gray-700 mb-1">Student's Signature:</p>
+              <div className="border-b border-gray-800 w-32 h-6">&nbsp;</div>
+            </div>
+          </div>
+        </div>
+
+        <DialogFooter className="flex justify-end space-x-2">
+          <Button variant="outline" onClick={handlePrint}>
+            <Printer className="mr-2 h-4 w-4" /> Print
+          </Button>
+          <Button variant="outline" onClick={handleDownloadDOCX}>
+            <FileText className="mr-2 h-4 w-4" /> Download DOCX
+          </Button>
+          <Button variant="outline" onClick={handleDownloadPDF}>
+            <FileDown className="mr-2 h-4 w-4" /> Download PDF
+          </Button>
+          <Button variant="secondary" onClick={onClose}>
+            Close
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
