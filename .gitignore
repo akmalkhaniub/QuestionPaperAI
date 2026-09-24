@@ -25,3 +25,6 @@ coverage/
 
 # Ignore Python virtual environments
 scan_service/venv/
+
+__pycache__/
+*.py[cod]
