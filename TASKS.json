@@ -1,0 +1,13 @@
+[
+  {
+    "id": "QP-001",
+    "status": "TODO",
+    "priority": 1,
+    "title": "Clean Up Duplicate Fix Files in Repository Root",
+    "description": "Safely consolidate and remove duplicate temporary files (`fixed-step4.tsx`, `fixed_step4.tsx`, `fixedFunction.ts`, `fixed-processGeneratedPapers.ts`) ensuring all stable logic is merged into standard source directories.",
+    "acceptance_criteria": [
+      "Duplicate files removed from root",
+      "TypeScript build and typecheck pass cleanly"
+    ]
+  }
+]
