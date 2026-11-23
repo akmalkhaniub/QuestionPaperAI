@@ -2,7 +2,7 @@
 
 import { db, pool } from "./db";
 import { students, papers } from "../shared/schema";
-import { eq } from "drizzle-orm";
+import { eq, isNull } from "drizzle-orm";
 
 export async function fixDatabaseIssues() {
   console.log("===== Starting database fix script =====");
@@ -27,7 +27,7 @@ async function updateStudentClassSections() {
     // Get all students with null class_section
     const studentsToUpdate = await db.select()
       .from(students)
-      .where(eq(students.classSection, null));
+      .where(isNull(students.classSection));
     
     console.log(`Found ${studentsToUpdate.length} students with null class_section`);
     

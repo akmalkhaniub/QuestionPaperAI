@@ -44,14 +44,17 @@ export default function GeneratedPapersList({ paperId, paperTitle, onDelete }: P
   const queryClient = useQueryClient();
 
   // Query to get all generated papers for this paper ID
-  const { data: generatedPapers, isLoading } = useQuery({
+  const { data: generatedPapers, isLoading } = useQuery<any[]>({
     queryKey: ['/api/papers', paperId, 'generated-papers'],
-    queryFn: () => apiRequest(`/api/papers/${paperId}/generated-papers`),
+    queryFn: async () => {
+      const res = await apiRequest('GET', `/api/papers/${paperId}/generated-papers`);
+      return res.json();
+    },
   });
   
   // Mutation to delete a single generated paper
   const deleteMutation = useMutation({
-    mutationFn: (id: number) => apiRequest(`/api/generated-papers/${id}`, { method: 'DELETE' }),
+    mutationFn: (id: number) => apiRequest('DELETE', `/api/generated-papers/${id}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/papers', paperId, 'generated-papers'] });
       toast({
@@ -72,7 +75,7 @@ export default function GeneratedPapersList({ paperId, paperTitle, onDelete }: P
   
   // Mutation to delete all generated papers
   const deleteAllMutation = useMutation({
-    mutationFn: () => apiRequest(`/api/papers/${paperId}/generated-papers`, { method: 'DELETE' }),
+    mutationFn: () => apiRequest('DELETE', `/api/papers/${paperId}/generated-papers`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/papers', paperId, 'generated-papers'] });
       toast({

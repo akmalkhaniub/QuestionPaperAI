@@ -44,6 +44,7 @@ type Question = {
   marksValue: number;
   isVerified: boolean;
   createdAt: string;
+  tags?: string[] | null;
 };
 
 export default function QuestionBank() {
@@ -370,7 +371,8 @@ export default function QuestionBank() {
     if (!searchTerm && !selectedTags.length) return true;
     const lowerSearchTerm = searchTerm.toLowerCase();
     // Tag match
-    const tagMatch = selectedTags.length === 0 || (question.tags && selectedTags.every(tag => question.tags.includes(tag)));
+    const qTags = question.tags ?? [];
+    const tagMatch = selectedTags.length === 0 || selectedTags.every(tag => qTags.includes(tag));
     // Text match
     const textMatch =
       !searchTerm ||

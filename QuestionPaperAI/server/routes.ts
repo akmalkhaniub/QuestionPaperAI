@@ -18,6 +18,31 @@ import { processGeneratedPapers } from "./fixed-generate";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
+/** Determine default question types and mark weights for a paper template. */
+function getQuestionTypeForTemplate(templateType: string): { type: string; marks: number }[] {
+  switch (templateType) {
+    case "Multiple Choice Only (MCQ)":
+      return [{ type: "Multiple Choice", marks: 1 }];
+    case "Short Answer Only":
+      return [{ type: "Short Answer", marks: 5 }];
+    case "Coding Questions Only":
+      return [{ type: "Coding Type Long Question", marks: 10 }];
+    case "Mixed (MCQ + Short Answer)":
+      return [
+        { type: "Multiple Choice", marks: 1 },
+        { type: "Short Answer", marks: 5 },
+      ];
+    case "Mixed (All Types)":
+      return [
+        { type: "Multiple Choice", marks: 1 },
+        { type: "Short Answer", marks: 5 },
+        { type: "Coding Type Long Question", marks: 10 },
+      ];
+    default:
+      return [{ type: "Multiple Choice", marks: 1 }];
+  }
+}
+
 // Configure multer for file uploads
 const upload = multer({
   dest: 'uploads/',
@@ -76,25 +101,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: "No image uploaded" });
       }
       const fs = await import('fs/promises');
-      const axios = await import('axios');
       const imgPath = req.file.path;
       const imgStream = await fs.readFile(imgPath);
       // Forward image to Python scan microservice
-      const scanRes = await axios.default.post(
-        'http://localhost:5001/scan',
-        { file: imgStream },
-        {
+      let scanData: unknown;
+      try {
+        const scanResp = await fetch('http://localhost:5001/scan', {
+          method: 'POST',
           headers: {
             'Content-Type': 'application/octet-stream',
-            'Content-Disposition': `form-data; name="file"; filename="${req.file.originalname}"`
-          }
-        }
-      ).catch(err => {
-        return { data: { error: err.message } };
-      });
+            'Content-Disposition': `form-data; name="file"; filename="${req.file.originalname}"`,
+          },
+          body: new Uint8Array(imgStream),
+        });
+        scanData = await scanResp.json();
+      } catch (err: unknown) {
+        scanData = { error: err instanceof Error ? err.message : String(err) };
+      }
       // Clean up uploaded file
       await fs.unlink(imgPath);
-      res.json(scanRes.data);
+      res.json(scanData);
     } catch (err) {
       res.status(500).json({ error: 'Failed to scan image', details: err instanceof Error ? err.message : err });
     }
@@ -530,31 +556,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Create the paper
       const newPaper = await storage.createPaper(paperData);
-      
-      // Helper function to determine question types based on template
-      function getQuestionTypeForTemplate(templateType: string): { type: string, marks: number }[] {
-        switch(templateType) {
-          case "Multiple Choice Only (MCQ)":
-            return [{ type: "Multiple Choice", marks: 1 }];
-          case "Short Answer Only":
-            return [{ type: "Short Answer", marks: 5 }];
-          case "Coding Questions Only":
-            return [{ type: "Coding Type Long Question", marks: 10 }];
-          case "Mixed (MCQ + Short Answer)":
-            return [
-              { type: "Multiple Choice", marks: 1 },
-              { type: "Short Answer", marks: 5 }
-            ];
-          case "Mixed (All Types)":
-            return [
-              { type: "Multiple Choice", marks: 1 },
-              { type: "Short Answer", marks: 5 },
-              { type: "Coding Type Long Question", marks: 10 }
-            ];
-          default:
-            return [{ type: "Multiple Choice", marks: 1 }];
-        }
-      }
 
       // If we don't have topics specified, create default topics
       if (!paperData.topics || paperData.topics.length === 0) {
@@ -686,31 +687,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
           (Array.isArray(req.body) && req.body.length === 0)) {
         
         console.log("Empty request detected, creating default topics based on template");
-        
-        // Helper function to determine question types based on template
-        function getQuestionTypeForTemplate(templateType: string): { type: string, marks: number }[] {
-          switch(templateType) {
-            case "Multiple Choice Only (MCQ)":
-              return [{ type: "Multiple Choice", marks: 1 }];
-            case "Short Answer Only":
-              return [{ type: "Short Answer", marks: 5 }];
-            case "Coding Questions Only":
-              return [{ type: "Coding Type Long Question", marks: 10 }];
-            case "Mixed (MCQ + Short Answer)":
-              return [
-                { type: "Multiple Choice", marks: 1 },
-                { type: "Short Answer", marks: 5 }
-              ];
-            case "Mixed (All Types)":
-              return [
-                { type: "Multiple Choice", marks: 1 },
-                { type: "Short Answer", marks: 5 },
-                { type: "Coding Type Long Question", marks: 10 }
-              ];
-            default:
-              return [{ type: "Multiple Choice", marks: 1 }];
-          }
-        }
 
         const questionTypes = getQuestionTypeForTemplate(paper.templateType || "Multiple Choice Only (MCQ)");
         const defaultTopics = [];

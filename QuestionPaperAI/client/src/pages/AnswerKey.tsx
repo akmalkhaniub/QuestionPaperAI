@@ -64,7 +64,11 @@ export default function AnswerKey() {
       <h2 className="text-2xl font-semibold mb-4">Paper Answer Key</h2>
       <Card className="p-6">
         {/* MCQAnswerKeyPreview expects paperData, so pass the paper object or its questions/sections as needed */}
-        <MCQAnswerKeyPreview isOpen={true} paperData={paper} />
+        {paper ? (
+          <MCQAnswerKeyPreview isOpen={true} paperData={paper} />
+        ) : (
+          <p className="text-muted-foreground">Paper answer key not found.</p>
+        )}
       </Card>
     </div>
   );

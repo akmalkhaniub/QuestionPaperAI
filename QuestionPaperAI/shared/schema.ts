@@ -227,8 +227,7 @@ export const questionBank = pgTable("question_bank", {
   verifiedTypeIdx: uniqueIndex("question_bank_verified_type_idx").on(table.isVerified, table.questionType)
 }));
 
-// Export the QuestionBank type
-export type QuestionBank = typeof questionBank.$inferSelect;
+// Export the QuestionBank type (defined below after insertQuestionBankSchema)
 
 export const questionBankRelations = relations(questionBank, ({ one }) => ({
   user: one(users, {
